@@ -10,6 +10,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
     GRANT SELECT ON pg_stat_bgwriter TO telegraf;
     GRANT SELECT ON pg_locks TO telegraf;
     GRANT SELECT ON pg_stat_activity TO telegraf;
+    GRANT SELECT ON pg_stat_activity TO app;
     GRANT pg_read_all_stats TO telegraf;
 
     CREATE VIEW blocking_process AS
