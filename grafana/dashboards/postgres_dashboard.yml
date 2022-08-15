@@ -1,0 +1,6 @@
+apiVersion: 1
+ 
+providers:
+  - name: 'postgresql_dashboard'
+    options:
+      path: /etc/grafana/provisioning/dashboards

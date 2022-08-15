@@ -2,6 +2,20 @@ version: "3"
 services:
   grafana:
     hostname: grafana1
+    image: grafana/grafana-oss
+    ports:
+      - "3000:3000"
+    environment:
+      - INFLUX_URI=http://influxdb1:8086
+      - INFLUX_DB=influx-db
+      - INFLUX_USER=admin
+      - INFLUX_PASSWORD=admin_pass
+      - INFLUX_TOKEN=influx-token
+      - INFLUX_ORG=influx-org
+      - INFLUX_BUCKET=influx-bucket
+    volumes:
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
 
   postgres:
     hostname: postgres1
