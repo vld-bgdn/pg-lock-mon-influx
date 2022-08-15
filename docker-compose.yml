@@ -7,9 +7,9 @@ services:
       - "3000:3000"
     environment:
       - INFLUX_URI=http://influxdb1:8086
-#      - INFLUX_DB=my-db
-      - INFLUX_USER=my-user
-      - INFLUX_PASSWORD=my-password
+      - INFLUX_DB=v1-db
+      - INFLUX_USER=v1-user
+      - INFLUX_PASSWORD=v1-password
       - INFLUX_TOKEN=my-token
       - INFLUX_ORG=my-org
       - INFLUX_BUCKET=my-bucket
@@ -38,11 +38,15 @@ services:
       - DOCKER_INFLUXDB_INIT_PASSWORD=my-password
       - DOCKER_INFLUXDB_INIT_ORG=my-org
       - DOCKER_INFLUXDB_INIT_BUCKET=my-bucket
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-token   
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-token
+      - V1_DB_NAME=v1-db
+      - V1_RP_NAME=v1-rp
+      - V1_AUTH_USERNAME=v1-user
+      - V1_AUTH_PASSWORD=v1-password   
 #      - DB_NAME=check-db
 #      - RP_NAME=check-rp
-#    volumes:
-#      - ./influxdb/setup-v1.sh:/docker-entrypoint-initdb.d/setup-v1.sh
+    volumes:
+      - ./influxdb/setup-v1.sh:/docker-entrypoint-initdb.d/setup-v1.sh
   telegraf:
     hostname: telegraf1
     image: telegraf
