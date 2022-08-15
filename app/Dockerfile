@@ -21,5 +21,6 @@ COPY db.py .
 COPY deadlock_test.py .
 
 RUN pip install --no-cache /wheels/*
+RUN pip install psycopg2-binary
 
 CMD [ "python", "-u", "deadlock_test.py" ]
