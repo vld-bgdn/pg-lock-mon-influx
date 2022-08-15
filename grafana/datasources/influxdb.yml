@@ -11,17 +11,4 @@ datasources:
       httpMode: GET
       httpHeaderName1: 'Authorization'
     secureJsonData:
-#      password: $INFLUX_PASSWORD
       httpHeaderValue1: 'Token $INFLUX_TOKEN'
-#  - name: InfluxDB_v2_Flux
-#    type: influxdb
-#    access: proxy
-#    url: $INFLUX_URI
-#    secureJsonData:
-#      token: $INFLUX_TOKEN
-#    jsonData:
-#      version: Flux
-#      organization: $INFLUX_ORG
-#      defaultBucket: $INFLUX_BUCKET
-#      tlsSkipVerify: true
-
