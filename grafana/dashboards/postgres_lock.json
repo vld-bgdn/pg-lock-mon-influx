@@ -1,0 +1,394 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "influx_datasource_uid"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [
+              {
+                "options": {
+                  "Null": {
+                    "index": 0,
+                    "text": "0"
+                  }
+                },
+                "type": "value"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 4,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "influx_datasource_uid"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "db"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "postgresql",
+            "orderByTime": "ASC",
+            "policy": "influx-rp",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "deadlocks"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "count"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "db",
+                "operator": "=",
+                "value": "testlockdb"
+              }
+            ]
+          }
+        ],
+        "title": "Locks per DB",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "influx_datasource_uid"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto",
+              "inspect": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Time"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 148
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "blocked_pid"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 99
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "blocked_user"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 107
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "blocking_pid"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 105
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "blocking_user"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 140
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "blocked_statement"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 339
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "blocking_statement"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 396
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 5
+        },
+        "id": 2,
+        "options": {
+          "footer": {
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "9.0.7",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "influx_datasource_uid"
+            },
+            "groupBy": [],
+            "measurement": "locks_measurement",
+            "orderByTime": "ASC",
+            "policy": "influx-rp",
+            "query": "SELECT \"blocked_pid\",\"blocked_user\",\"blocking_pid\",\"blocking_user\", \"blocked_statement\", \"blocking_statement\" FROM \"influx-rp\".\"locks_measurement\" WHERE $timeFilter",
+            "rawQuery": true,
+            "refId": "A",
+            "resultFormat": "table",
+            "select": [
+              [
+                {
+                  "params": [
+                    "blocked_pid"
+                  ],
+                  "type": "field"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "blocked_user"
+                  ],
+                  "type": "field"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "blocking_pid"
+                  ],
+                  "type": "field"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "blocking_user"
+                  ],
+                  "type": "field"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "blocked_statement"
+                  ],
+                  "type": "field"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "blocking_statement"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "title": "Lock queries",
+        "type": "table"
+      }
+    ],
+    "refresh": "5s",
+    "schemaVersion": 36,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "postgres_dashboard",
+    "uid": "2D3AoHiVz",
+    "version": 1,
+    "weekStart": ""
+  }
