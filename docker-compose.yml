@@ -8,6 +8,22 @@ services:
   
   influxdb:
     hostname: influxdb1
+    image: influxdb
+    ports:
+      - 8086:8086
+    depends_on:
+      - postgres
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=admins_pass
+      - DOCKER_INFLUXDB_INIT_ORG=influx-org
+      - DOCKER_INFLUXDB_INIT_BUCKET=influx-bucket
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=influx-token
+      - V1_DB_NAME=influx-db
+      - V1_RP_NAME=influx-rp
+    volumes:
+      - ./influxdb/setup-v1.sh:/docker-entrypoint-initdb.d/setup-v1.sh
 
   telegraf:
     hostname: telegraf1
