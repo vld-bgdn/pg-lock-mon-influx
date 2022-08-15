@@ -5,6 +5,13 @@ services:
 
   postgres:
     hostname: postgres1
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres_pass
+      TELEGRAF_PASSWORD: telegraf_password
+      APP_PASSWORD: app_password
+    volumes:
+      - ./postgres/setup_db.sh:/docker-entrypoint-initdb.d/setup_db.sh
   
   influxdb:
     hostname: influxdb1
