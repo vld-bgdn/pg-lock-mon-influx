@@ -39,8 +39,8 @@ services:
       - DOCKER_INFLUXDB_INIT_ORG=check-org
       - DOCKER_INFLUXDB_INIT_BUCKET=check-bucket
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=check-token
-      - DB_NAME=check-db
-      - RP_NAME=check-rp
+      - V1_DB_NAME=check-db
+      - V1_RP_NAME=check-rp
     volumes:
       - ./influxdb/setup-v1.sh:/docker-entrypoint-initdb.d/setup-v1.sh
   telegraf:
