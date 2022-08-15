@@ -39,8 +39,8 @@ services:
       - DOCKER_INFLUXDB_INIT_ORG=influx-org
       - DOCKER_INFLUXDB_INIT_BUCKET=influx-bucket
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=influx-token
-      - V1_DB_NAME=influx-db
-      - V1_RP_NAME=influx-rp
+      - DB_NAME=influx-db
+      - RP_NAME=influx-rp
     volumes:
       - ./influxdb/setup-v1.sh:/docker-entrypoint-initdb.d/setup-v1.sh
   telegraf:
