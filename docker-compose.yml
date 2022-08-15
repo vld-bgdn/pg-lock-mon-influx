@@ -16,7 +16,6 @@ services:
     volumes:
       - ./grafana/datasources:/etc/grafana/provisioning/datasources
       - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
-
   postgres:
     hostname: postgres1
     image: postgres
@@ -26,7 +25,6 @@ services:
       APP_PASSWORD: app_password
     volumes:
       - ./postgres/setup_db.sh:/docker-entrypoint-initdb.d/setup_db.sh
-  
   influxdb:
     hostname: influxdb1
     image: influxdb
@@ -45,7 +43,6 @@ services:
       - V1_RP_NAME=influx-rp
     volumes:
       - ./influxdb/setup-v1.sh:/docker-entrypoint-initdb.d/setup-v1.sh
-
   telegraf:
     hostname: telegraf1
     image: telegraf
@@ -59,6 +56,17 @@ services:
       - POSTGRES_URI=postgres://telegraf:telegraf_password@postgres1/postgres?sslmode=disable
     volumes:
       - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
-
   app:
     hostname: app1
+    image: app
+    build:
+      context: ./app
+      dockerfile: ./Dockerfile
+    restart: always
+    depends_on:
+      - postgres
+      - telegraf
+      - influxdb
+      - grafana
+    environment:
+      - POSTGRES_URI=postgresql+psycopg2://app:app_password@postgres1/testlockdb?sslmode=disable
