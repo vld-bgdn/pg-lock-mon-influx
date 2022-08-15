@@ -1,0 +1,16 @@
+version: "3"
+services:
+  grafana:
+    hostname: grafana1
+
+  postgres:
+    hostname: postgres1
+  
+  influxdb:
+    hostname: influxdb1
+
+  telegraf:
+    hostname: telegraf1
+
+  app:
+    hostname: app1
