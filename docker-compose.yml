@@ -7,12 +7,12 @@ services:
       - "3000:3000"
     environment:
       - INFLUX_URI=http://influxdb1:8086
-      - INFLUX_DB=influx-db
+      - INFLUX_DB=check-db
       - INFLUX_USER=admin
       - INFLUX_PASSWORD=admin_pass
-      - INFLUX_TOKEN=influx-token
-      - INFLUX_ORG=influx-org
-      - INFLUX_BUCKET=influx-bucket
+      - INFLUX_TOKEN=check-token
+      - INFLUX_ORG=check-org
+      - INFLUX_BUCKET=check-bucket
     volumes:
       - ./grafana/datasources:/etc/grafana/provisioning/datasources
       - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
@@ -36,11 +36,11 @@ services:
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_USERNAME=admin
       - DOCKER_INFLUXDB_INIT_PASSWORD=admin_pass
-      - DOCKER_INFLUXDB_INIT_ORG=influx-org
-      - DOCKER_INFLUXDB_INIT_BUCKET=influx-bucket
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=influx-token
-      - DB_NAME=influx-db
-      - RP_NAME=influx-rp
+      - DOCKER_INFLUXDB_INIT_ORG=check-org
+      - DOCKER_INFLUXDB_INIT_BUCKET=check-bucket
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=check-token
+      - DB_NAME=check-db
+      - RP_NAME=check-rp
     volumes:
       - ./influxdb/setup-v1.sh:/docker-entrypoint-initdb.d/setup-v1.sh
   telegraf:
@@ -50,9 +50,9 @@ services:
       - influxdb
     environment:
       - INFLUX_HOST=influxdb1
-      - INFLUX_ADMIN_TOKEN=influx-token
-      - INFLUX_ORG=influx-org
-      - INFLUX_BUCKET=influx-bucket
+      - INFLUX_ADMIN_TOKEN=check-token
+      - INFLUX_ORG=check-org
+      - INFLUX_BUCKET=check-bucket
       - POSTGRES_URI=postgres://telegraf:telegraf_password@postgres1/postgres?sslmode=disable
     volumes:
       - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
