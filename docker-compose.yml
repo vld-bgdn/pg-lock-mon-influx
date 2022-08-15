@@ -27,6 +27,17 @@ services:
 
   telegraf:
     hostname: telegraf1
+    image: telegraf
+    depends_on:
+      - influxdb
+    environment:
+      - INFLUX_HOST=influxdb1
+      - INFLUX_ADMIN_TOKEN=influx-token
+      - INFLUX_ORG=influx-org
+      - INFLUX_BUCKET=influx-bucket
+      - POSTGRES_URI=postgres://telegraf:telegraf_password@postgres1/postgres?sslmode=disable
+    volumes:
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
 
   app:
     hostname: app1
