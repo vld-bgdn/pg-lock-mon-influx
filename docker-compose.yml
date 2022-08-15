@@ -35,7 +35,7 @@ services:
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_USERNAME=admin
-      - DOCKER_INFLUXDB_INIT_PASSWORD=admins_pass
+      - DOCKER_INFLUXDB_INIT_PASSWORD=admin_pass
       - DOCKER_INFLUXDB_INIT_ORG=influx-org
       - DOCKER_INFLUXDB_INIT_BUCKET=influx-bucket
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=influx-token
