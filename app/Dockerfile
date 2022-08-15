@@ -1,11 +1,14 @@
-FROM python:3 as builder
+FROM python:3-slim as builder
 
 WORKDIR /usr/src/app
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends postgresql-dev gcc python3-dev musl-dev
 
 COPY requirements.txt ./
 RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
 
-FROM python:3
+FROM python:3-slim
 
 WORKDIR /usr/src/app
 

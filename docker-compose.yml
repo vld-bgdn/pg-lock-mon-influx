@@ -43,8 +43,6 @@ services:
       - V1_RP_NAME=v1-rp
       - V1_AUTH_USERNAME=v1-user
       - V1_AUTH_PASSWORD=v1-password   
-#      - DB_NAME=check-db
-#      - RP_NAME=check-rp
     volumes:
       - ./influxdb/setup-v1.sh:/docker-entrypoint-initdb.d/setup-v1.sh
   telegraf:
