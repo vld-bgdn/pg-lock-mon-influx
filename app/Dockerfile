@@ -17,8 +17,6 @@ COPY deadlock_test.py .
 
 COPY --from=builder /usr/src/app/wheels /wheels
 COPY --from=builder /usr/src/app/requirements.txt .
-COPY db.py .
-COPY deadlock_test.py .
 
 RUN pip install --no-cache /wheels/*
 RUN pip install psycopg2-binary
